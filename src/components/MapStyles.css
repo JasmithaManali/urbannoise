@@ -1,0 +1,19 @@
+.map-container {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+/* Ensure Google Maps controls display properly */
+.gm-style-cc {
+  display: block !important;
+}
+
+/* Fix for Google Maps canvas */
+.gm-style {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

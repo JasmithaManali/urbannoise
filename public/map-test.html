@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Maps Test</title>
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    h1 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Google Maps Test</h1>
+    <div id="map"></div>
+  </div>
+
+  <script>
+    function initMap() {
+      console.log("Map initialization started");
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 40.7128, lng: -74.0060 },
+        zoom: 12,
+      });
+      
+      // Add a marker
+      new google.maps.Marker({
+        position: { lat: 40.7128, lng: -74.0060 },
+        map: map,
+        title: "New York City"
+      });
+      
+      console.log("Map initialized successfully");
+    }
+  </script>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMz6idD05pzfn5lhA-TAw-mAZCU&callback=initMap" async defer></script>
+</body>
+</html>
