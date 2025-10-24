@@ -1,6 +1,6 @@
 import React from 'react';
 import WorkingMap from '../components/WorkingMap';
-import AudioRecorder from '../components/AudioRecorder';
+import AudioCapture from '../components/AudioCapture';
 import NoiseLevel from '../components/NoiseLevel';
 import HeroSection from '../components/HeroSection';
 
@@ -24,7 +24,7 @@ const Dashboard: React.FC = () => {
           
           {/* Audio Capture - Takes up 1/3 of the space on xl screens */}
           <div className="xl:col-span-1">
-            <AudioRecorder />
+            <AudioCapture />
             <div className="mt-8">
               <NoiseLevel />
             </div>
