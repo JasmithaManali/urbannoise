@@ -1,180 +1,110 @@
-# Urban Noise Classification MVP
+<h1 align="center">🌆 Urban Noise Intelligence Ecosystem</h1>
 
-A comprehensive web application for monitoring and analyzing urban noise patterns using machine learning and interactive mapping.
+<p align="center">
+  <em>AI-Driven Urban Noise Classification & Mapping System</em>
+</p>
 
-## Features
+<p align="center">
+  <b>Patent Pending</b> • <b>Real-Time Heatmaps</b> • <b>IoT Edge Intelligence</b>
+</p>
+<img width="1408" height="736" alt="Gemini_Generated_Image_rnls7frnls7frnls" src="https://github.com/user-attachments/assets/45ec30ac-a4f2-4a10-9cb2-e42c91115994" />
+<img width="2816" height="1536" alt="Gemini_Generated_Image_7ws1na7ws1na7ws1-6" src="https://github.com/user-attachments/assets/e41f770f-611f-4a22-956a-fef664f82d80" />
 
-### Core Functionality
-- **Interactive Google Maps Heatmap**: Real-time visualization of noise levels with customizable time-range filtering
-- **Audio Capture Widget**: Records 3-10 second audio samples with real-time RMS dB monitoring
-- **Machine Learning Integration**: Automatic noise classification with confidence scores
-- **Route Planning**: Find quiet route alternatives using Google Directions API
-- **Privacy-First Design**: Explicit consent management for microphone and location access
+<div align="center">
+  <img src="https://img.shields.io/badge/Status-Patent_Under_Review-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Frontend-React_v18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/Cloud-AWS_Serverless-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
+  <img src="https://img.shields.io/badge/IoT-Edge_Computing-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
+</div>
 
-### User Interface
-- **Responsive Design**: Optimized for mobile, tablet, and desktop viewing
-- **Modern UI**: Clean, professional interface with smooth animations and micro-interactions
-- **Interactive Map**: Click on data points to view detailed noise information
-- **Real-time Feedback**: Live audio level monitoring during recording
+---
 
-### Administrative Tools
-- **API Configuration**: Easy setup for backend API endpoints
-- **Connection Testing**: Verify API connectivity and authentication
-- **Data Management**: View recent noise recordings and system status
-- **Privacy Controls**: Manage user consent preferences and data storage options
+### 📖 Overview
+**Urban Noise Intelligence** is a comprehensive IoT and AI ecosystem designed to monitor, classify, and visualize urban noise pollution in real-time. Unlike simple decibel meters, this system uses **Machine Learning** to identify *sources* of noise (e.g., Construction, Traffic, Sirens, Public Gatherings) and map them dynamically.
 
-## Required API Keys
+This repository hosts the **Central Command Dashboard**, a high-performance React application that serves as the "Digital Twin" for the city's noise profile. It connects to our AWS cloud infrastructure via secure API Endpoints to render live heatmaps and analytics.
 
-### Google Maps API
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing project
-3. Enable the following APIs:
-   - Maps JavaScript API
-   - Maps SDK for Android
-   - Maps SDK for iOS
-   - Places API
-   - Directions API
-   - Geocoding API
-4. Create credentials (API Key)
-5. Replace `AIzaSyDemo_Key_Replace_With_Real_Key` in `src/components/MapComponent.tsx`
+---
+<img width="1024" height="1024" alt="Cloud API Gateway" src="https://github.com/user-attachments/assets/7cde97c8-adc2-400c-8216-de2ba446a53a" />
 
-### Backend API Configuration
-Configure your backend API in the Admin panel with:
-- **Base URL**: Your API server endpoint
-- **API Key**: Authentication token for your backend
 
-## Required Backend Endpoints
+### 💻 The Dashboard (Front-End Core)
+The heart of this repository is the **React.js Application** designed for city planners and authorities.
 
-### GET /heatmapData
-Returns noise data points for map visualization.
+#### Key Features:
+* **🗺️ Live Noise Heatmaps:** Integrates **Leaflet/Mapbox** to visualize noise intensity overlays on city maps in real-time.
+* **📊 Dynamic Data Visualization:** Renders live decibel streams and frequency analysis using **Chart.js** and **D3.js**.
+* **🔌 API-Driven Architecture:** Fetches aggregated data from **AWS API Gateway** endpoints, ensuring the frontend remains lightweight and decoupled from raw IoT streams.
+* **Alert System:** Visual notifications when specific zones exceed legal noise thresholds or when anomalous patterns (e.g., gunshots/crashes) are detected.
 
-**Query Parameters:**
-- `timeRange`: Filter data by time period (`1h`, `24h`, `7d`)
+---
 
-**Response Format:**
-```json
-[
-  {
-    "id": "string",
-    "lat": number,
-    "lng": number,
-    "timestamp": "ISO 8601 string",
-    "label": "Traffic|Construction|Music|Quiet",
-    "noise_level": number,
-    "confidence": number,
-    "audio_url": "string (optional)"
-  }
-]
-```
+### ⚙️ The Full Ecosystem: From Edge to Cloud
+While this repo focuses on the frontend, the complete patented ecosystem operates on a 3-stage pipeline:
 
-### POST /upload
-Processes audio recordings and returns ML classification results.
+#### 1. Edge Data Collection (IoT Layer)
+* **Device:** Raspberry Pi-based Edge Nodes equipped with high-fidelity microphone arrays.
+* **Edge Processing:** Runs lightweight **TFLite models** locally to filter background noise and detect "events" before transmission.
+* **Telemetry:** Sends processed metadata (Timestamp, GPS, dB Level, Classification Label) to the cloud via MQTT/HTTPS.
 
-**Request Body:**
-```json
-{
-  "audio": "base64 encoded audio data",
-  "lat": number,
-  "lng": number,
-  "store_audio": boolean
-}
-```
+#### 2. Cloud Aggregation (AWS)
+* **Ingestion:** **AWS IoT Core** receives raw streams from thousands of sensors.
+* **Processing:** **AWS Lambda** functions pool the data, validating and categorizing it into regional clusters.
+* **Storage:** Structured data is stored in **DynamoDB** for hot retrieval (live dashboard) and **S3** for cold storage (historical analysis).
 
-**Response Format:**
-```json
-{
-  "id": "string",
-  "label": "string",
-  "confidence": number,
-  "noise_level": number,
-  "message": "string"
-}
-```
+#### 3. Prediction & Delivery (API Layer)
+* **Analysis:** Cloud-based ML models refine classifications and predict noise trends based on historical patterns.
+* **Delivery:** **Amazon API Gateway** exposes secure REST endpoints (e.g., `GET /noise/heatmap`, `GET /alerts/live`) which this React application consumes.
 
-### GET /route
-Returns optimal route information including quiet alternatives.
+---
 
-**Query Parameters:**
-- `start`: Starting location (address or coordinates)
-- `end`: Destination location (address or coordinates)
-- `quiet`: Boolean flag for quiet route alternative
+### 🏗️ System Architecture
 
-**Response Format:**
-```json
-{
-  "coordinates": [
-    { "lat": number, "lng": number }
-  ],
-  "distance": "string",
-  "duration": "string",
-  "isQuiet": boolean
-}
-```
+> **[End Point Data Collection]** ➔ **[AWS Cloud Pooling & Categorization]** ➔ **[API Driven Endpoints]** ➔ **[React Heatmap Dashboard]**
 
-## Installation & Setup
+---
 
-### Prerequisites
-- Node.js 18+ and npm
-- Google Maps API key
-- Backend API server
+### 💻 Tech Stack
 
-### Local Development
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Replace the Google Maps API key in `src/components/MapComponent.tsx`
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-5. Open http://localhost:5173 in your browser
+<div align="center">
+  <h4>Frontend (This Repo)</h4>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white" />
+  <img src="https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white" />
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" />
+  <br />
 
-### Production Build
+  <h4>Cloud & API</h4>
+  <img src="https://img.shields.io/badge/AWS_API_Gateway-FF4F8B?style=for-the-badge&logo=amazon-aws&logoColor=white" />
+  <img src="https://img.shields.io/badge/AWS_Lambda-FF9900?style=for-the-badge&logo=awslambda&logoColor=white" />
+  <img src="https://img.shields.io/badge/DynamoDB-4053D6?style=for-the-badge&logo=amazondynamodb&logoColor=white" />
+  <br />
+
+  <h4>IoT & Edge AI</h4>
+  <img src="https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=Raspberry%20Pi&logoColor=white" />
+  <img src="https://img.shields.io/badge/TensorFlow_Lite-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" />
+  <img src="https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=mqtt&logoColor=white" />
+</div>
+
+---
+
+### 🛠️ Getting Started (Frontend)
+
+To run the **Urban Noise Dashboard** locally:
+
 ```bash
-npm run build
-npm run preview
-```
+# Clone the repository
+git clone [https://github.com/Sukheshkanna13/Urban-Noise-Intelligence.git](https://github.com/Sukheshkanna13/Urban-Noise-Intelligence.git)
 
-## Privacy & Data Protection
+# Navigate to the dashboard directory
+cd client-dashboard
 
-### User Consent Management
-- Explicit consent required for microphone and location access
-- Optional audio storage with clear opt-out mechanism
-- Consent preferences stored locally and respected across sessions
+# Install dependencies
+npm install
 
-### Data Collection
-- **Microphone**: Required for audio recording and noise analysis
-- **Location**: Required for geographical mapping of noise data
-- **Audio Storage**: Optional, users can opt-out while still using the service
+# Configure API Endpoint
+# Create a .env file and add your AWS API Gateway URL
+# REACT_APP_API_URL=[https://your-api-id.execute-api.region.amazonaws.com/prod](https://your-api-id.execute-api.region.amazonaws.com/prod)
 
-## Demo Account
-
-The application includes a demo mode with mock data for testing:
-
-- **API Base URL**: `https://api.urbannoise.demo`
-- **API Key**: `demo-key-12345`
-- **Sample Data**: Pre-loaded noise data points around New York City
-
-## Browser Support
-
-- Chrome/Chromium 88+
-- Firefox 85+
-- Safari 14+
-- Edge 88+
-
-**Note**: Microphone access requires HTTPS in production environments.
-
-## Technology Stack
-
-- **Frontend**: React 18, TypeScript, Tailwind CSS
-- **Mapping**: Google Maps JavaScript API with Visualization Library
-- **Audio Processing**: Web Audio API, MediaRecorder API
-- **Routing**: React Router
-- **State Management**: React Context API
-- **Build Tool**: Vite
-
-## License
-
-MIT License - see LICENSE file for details.
+# Run the application
+npm start
