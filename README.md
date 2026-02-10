@@ -9,13 +9,14 @@
 </p>
 <img width="1408" height="736" alt="Gemini_Generated_Image_rnls7frnls7frnls" src="https://github.com/user-attachments/assets/45ec30ac-a4f2-4a10-9cb2-e42c91115994" />
 <img width="2816" height="1536" alt="Gemini_Generated_Image_7ws1na7ws1na7ws1-6" src="https://github.com/user-attachments/assets/e41f770f-611f-4a22-956a-fef664f82d80" />
+<img width="1152" height="548" alt="Screenshot 2026-02-10 at 7 46 43 PM" src="https://github.com/user-attachments/assets/0da95334-aec1-4035-b735-132754ca5803" />
 
 <div align="center">
   <img src="https://img.shields.io/badge/Status-Patent_Under_Review-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Frontend-React_v18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
   <img src="https://img.shields.io/badge/Cloud-AWS_Serverless-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
   <img src="https://img.shields.io/badge/IoT-Edge_Computing-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
-  <img width="1152" height="548" alt="Screenshot 2026-02-10 at 7 46 43 PM" src="https://github.com/user-attachments/assets/0da95334-aec1-4035-b735-132754ca5803" />
+  
 
 </div>
 
